@@ -1,10 +1,10 @@
-import  React, { useLayoutEffect, useState } from  "react";
+import React, { useLayoutEffect, useState } from "react";
 import chatStore from '../store/chat';
 
-const FirstPerson = () => {
+const SecondPerson = () => {
     const [chatState, setChatState] = useState(chatStore.initialState);
 
-    useLayoutEffect(() => {
+    useLayoutEffect(()=> {
         chatStore.subscribe(setChatState);
         chatStore.init();
     },[]);
@@ -12,7 +12,7 @@ const FirstPerson = () => {
     const onFormSubmit = e => {
         e.preventDefault();
         const messageObject = {
-            person: 'first-person',
+            person: 'second-person',
             text: e.target.elements.messageInput.value.trim(),
         };
         chatStore.sendMessage(messageObject);
@@ -34,7 +34,6 @@ const FirstPerson = () => {
                     type="text"
                     id="messageInput"
                     name="messageInput"
-                    placeholder="Type here..."
                     required
                 />
                 <button type="submit">Send</button> <br />
@@ -46,4 +45,4 @@ const FirstPerson = () => {
     );
 }
 
-export default FirstPerson;
+export default SecondPerson;
